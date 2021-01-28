@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyword Extraction &#8212; keywordextraction</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="https://loem-ms.github.io/loem-ms/">
+  
+  <img src="_static/logo.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">keywordextraction</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   Keyword Extraction
+  </a>
+ </li>
+</ul>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/keywordExtraction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/keywordExtraction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-keyword-extraction">
+   What is Keyword Extraction?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-extract-keywords">
+   How to Extract Keywords?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downdload-dataset-inspec">
+   Downdload dataset: Inspec
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#text-preprocessing">
+   Text Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tf-idf-based-method">
+   TF-IDF based method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rake-rapid-automatic-keyword-extraction">
+   RAKE: Rapid Automatic Keyword Extraction
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="keyword-extraction">
+<h1>Keyword Extraction<a class="headerlink" href="#keyword-extraction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-keyword-extraction">
+<h2>What is Keyword Extraction?<a class="headerlink" href="#what-is-keyword-extraction" title="Permalink to this headline">¶</a></h2>
+<p><strong>Keyword Extraction</strong> is a task of choosing keywords from a text/document. Here, <strong>keywords</strong> are words or sequences of one or more words which provide a compact describsion of a text’s content.</p>
+<p>Keywords are widely use in information retrieval(IR) systems as they are simple to revise and remember. They can be used to enrich the presentation of search results as well.</p>
+</div>
+<div class="section" id="how-to-extract-keywords">
+<h2>How to Extract Keywords?<a class="headerlink" href="#how-to-extract-keywords" title="Permalink to this headline">¶</a></h2>
+<p>Main processes in keyword extraction are:</p>
+<ol class="simple">
+<li><p>Generating candidate keywords</p></li>
+<li><p>Defining and Calculating scores of candidates</p></li>
+<li><p>Ranking cadidate keywords and sorting in descending order.</p></li>
+<li><p>Selecting top k candidates as the k keywords</p></li>
+</ol>
+<p>There are many approaches in this extraction task due to Definitions of scores of cadidates and Calculation Methods. In this article we introduce two popular methods:</p>
+<ol class="simple">
+<li><p>TF-IDF based method</p></li>
+<li><p>RAKE: Rapid Automatic Keyword Extraction</p></li>
+</ol>
+<p>We will explore these methods with example of keyword extraction from real dataset of scientific research papers’ abtracts in the following parts.</p>
+</div>
+<div class="section" id="downdload-dataset-inspec">
+<h2>Downdload dataset: <a class="reference external" href="https://dl.acm.org/doi/10.3115/1119355.1119383">Inspec</a><a class="headerlink" href="#downdload-dataset-inspec" title="Permalink to this headline">¶</a></h2>
+<p>Inspec consists of 2,000 abstracts of scientific journal papers from Computer Science collected between the years 1998 and 2002. Each document has two sets of keywords assigned: the controlled keywords, which are manually controlled assigned keywords that appear in the Inspec thesaurus but may not appear in the document, and the uncontrolled keywords which are freely assigned by the editors, i.e., are not restricted to the thesaurus or to the document. In our repository, we consider a union of both sets as the ground-truth .<a class="reference external" href="https://github.com/LIAAD/KeywordExtractor-Datasets#inspec">[Download source]</a></p>
+<p>!wget https://github.com/LIAAD/KeywordExtractor-Datasets/raw/master/datasets/Inspec.zip</p>
+<p>!unzip -q Inspec.zip</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span>
+
+<span class="n">docsPaths</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;Inspec/docsutf8&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">docsPaths</span><span class="p">:</span>
+  <span class="n">textPath</span> <span class="o">=</span> <span class="s1">&#39;Inspec/docsutf8/&#39;</span><span class="o">+</span><span class="n">p</span>
+  <span class="n">keyPath</span> <span class="o">=</span> <span class="s1">&#39;Inspec/keys/&#39;</span><span class="o">+</span><span class="n">p</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;key&#39;</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">textPath</span><span class="p">)</span> <span class="k">as</span> <span class="n">fi</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">fi</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">keyPath</span><span class="p">)</span> <span class="k">as</span> <span class="n">fi</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">fi</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+  <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">:</span><span class="n">key</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;make data: DONE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">c7120837b5a7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">docsPaths</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;Inspec/docsutf8&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">docsPaths</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;Inspec/docsutf8&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total number of texts in the dataset:&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data[1000]:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="mi">1000</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">keywords:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1000</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total number of texts in the dataset: 2000
+data[1000]:
+
+ The development of a mobile manipulator imaging system for bridge crack
+	inspection
+A mobile manipulator imaging system is developed for the automation of bridge
+	crack inspection. During bridge safety inspections, an eyesight
+	inspection is made for preliminary evaluation and screening before a
+	more precise inspection. The inspection for cracks is an important part
+	of the preliminary evaluation. Currently, the inspectors must stand on
+	the platform of a bridge inspection vehicle or a temporarily erected
+	scaffolding to examine the underside of a bridge. However, such a
+	procedure is risky. To help automate the bridge crack inspection
+	process, we installed two CCD cameras and a four-axis manipulator
+	system on a mobile vehicle. The parallel cameras are used to detect
+	cracks. The manipulator system is equipped with binocular charge
+	coupled devices (CCD) for examining structures that may not be
+	accessible to the eye. The system also reduces the danger of accidents
+	to the human inspectors. The manipulator system consists of four arms.
+	Balance weights are placed at the ends of arms 2 and 4, respectively,
+	to maintain the center of gravity during operation. Mechanically, arms
+	2 and 4 can revolve smoothly. Experiments indicated that the system
+	could be useful for bridge crack inspections
+
+
+
+keywords:
+
+mobile manipulator
+imaging system
+bridge crack inspection
+automation
+eyesight inspection
+CCD cameras
+four-axis manipulator
+parallel cameras
+binocular CCD
+charge coupled devices
+automatic optical inspection
+cameras
+CCD image sensors
+crack detection
+manipulators
+mobile robots
+structural engineering computing
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="text-preprocessing">
+<h2>Text Preprocessing<a class="headerlink" href="#text-preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>In text preprocessing we :</p>
+<ul class="simple">
+<li><p>convert to lowercase</p></li>
+<li><p>remove tages</p></li>
+<li><p>remove special characters and digits</p></li>
+<li><p>remove <a class="reference external" href="https://en.wikipedia.org/wiki/Stop_word">stopwords</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem.wordnet</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span>
+<span class="n">stopwords_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">input_text</span><span class="p">):</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">input_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&amp;lt;/?.*?&amp;gt;&quot;</span><span class="p">,</span><span class="s2">&quot; &amp;lt;&amp;gt; &quot;</span><span class="p">,</span> <span class="n">input_text</span><span class="p">)</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;(</span><span class="se">\\</span><span class="s2">d|</span><span class="se">\\</span><span class="s2">W)+&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">input_text</span><span class="p">)</span>
+    <span class="n">text_string</span> <span class="o">=</span> <span class="n">input_text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">text_string</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_string</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords_set</span><span class="p">]</span>
+    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+    <span class="n">text_string</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_string</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">preprocess</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000 2000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tf-idf-based-method">
+<h2>TF-IDF based method<a class="headerlink" href="#tf-idf-based-method" title="Permalink to this headline">¶</a></h2>
+<p>In this method, each word in text(tokenized string list) is consider as a candidate. Score of cadidate keyword is define by <a class="reference external" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">TF-IDF</a> score. The k candidate keywords with the highest TF-IDF score are selected as keywords.</p>
+<p>TF-IDF(term frequency–inverse document frequency) is a numerical statistic which reflect the importance of word in a text while considering it occurence within a group of documents(corpus).</p>
+<p>Consider a corpus with <span class="math notranslate nohighlight">\(N\)</span> documents. Let <span class="math notranslate nohighlight">\(t_{i,j}\)</span> be frequency of term <span class="math notranslate nohighlight">\(w_i (i=1,\cdots,W)\)</span> in document <span class="math notranslate nohighlight">\(D_j\)</span> and <span class="math notranslate nohighlight">\(df_i\)</span> be number of documents which term <span class="math notranslate nohighlight">\(w_i\)</span> occurences in. TF-IDF score of term <span class="math notranslate nohighlight">\(w_i\)</span> is defined by <span class="math notranslate nohighlight">\(\operatorname{tfidf}(i)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{tfidf}(i) = \sum_{j=1}^{N} t_{i,j}\log{\frac{N}{df_i}}
+\]</div>
+<p>In the following implimentation, we use tools offered by <em>scikitlearn</em>.</p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn-feature-extraction-text-countvectorizer">CountVectorizer</a><br />
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html">TfidfTransformer</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfTransformer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">word_freq_vec</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">(</span><span class="n">smooth_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">word_freq_vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TfidfTransformer(norm=&#39;l2&#39;, smooth_idf=True, sublinear_tf=False, use_idf=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_topk</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">sorted_words</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">sorted_words</span> <span class="o">=</span> <span class="n">sorted_words</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">f_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">:</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">f_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f_list</span><span class="p">)):</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">f_list</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">get_keywords</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">docs</span><span class="p">):</span>
+    <span class="n">tfidf_vec</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">docs</span><span class="p">[</span><span class="n">idx</span><span class="p">]]))</span>
+    <span class="n">co_matrix</span> <span class="o">=</span> <span class="n">tfidf_vec</span><span class="o">.</span><span class="n">tocoo</span><span class="p">()</span>
+    <span class="n">sorted_words</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">co_matrix</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">co_matrix</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">extract_topk</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">sorted_words</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keywords</span>
+
+<span class="k">def</span> <span class="nf">print_keywords</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">keywords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ans</span><span class="p">):</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="n">preprocess</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">keywords</span><span class="p">)]]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=====Abstract=====&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===Keywords===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🟢&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">keywords</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===Keywords by Author===&quot;</span><span class="p">)</span>
+    <span class="n">ext_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ext_keys</span><span class="p">:</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🙆‍♂️&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_idx</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">keywords</span><span class="o">=</span><span class="n">get_keywords</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">,</span> <span class="n">docs</span><span class="p">)</span>
+<span class="n">print_keywords</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">,</span><span class="n">keywords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=====Abstract=====
+Fractional differentiation in passive vibration control
+From a single-degree-of-freedom model used to illustrate the concept of
+	vibration isolation, a method to transform the design for a suspension
+	into a design for a robust controller is presented. Fractional
+	differentiation is used to model the viscoelastic behaviour of the
+	suspension. The use of fractional differentiation not only permits
+	optimisation of just four suspension parameters, showing the
+	&#39;compactness&#39; of the fractional derivative operator, but also leads to
+	robustness of the suspension&#39;s performance to uncertainty of the sprung
+	mass. As an example, an engine suspension is studied
+
+
+===Keywords===
+🟢suspension 0.537
+fractional 0.353
+🟢fractional differentiation 0.341
+🟢differentiation 0.289
+vibration 0.164
+🟢vibration isolation 0.118
+use fractional 0.118
+single degree freedom 0.118
+single degree 0.118
+operator also 0.118
+
+===Keywords by Author===
+🙆‍♂️fractional differentiation
+passive vibration control
+🙆‍♂️vibration isolation
+🙆‍♂️suspension
+robust controller
+viscoelastic behaviour
+sprung mass
+engine suspension
+damping
+🙆‍♂️differentiation
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this method, four of extracted top ten keywords are in keywords set selected by author. This result is somehow acceptable. However, to calculate TF-IDF score, a collection of documents(corpus) is required as reference data. Therefore, characteristic of reference data(corpus) highly affect the importance of word in single document. Keywords that occur in many documents within the corpus are not likely to be selected as statistically discriminating by lowering the TF-IDF score value.</p>
+</div>
+<div class="section" id="rake-rapid-automatic-keyword-extraction">
+<h2>RAKE: Rapid Automatic Keyword Extraction<a class="headerlink" href="#rake-rapid-automatic-keyword-extraction" title="Permalink to this headline">¶</a></h2>
+<p><em>(Ref: Rose, Stuart &amp; Engel, Dave &amp; Cramer, Nick &amp; Cowley, Wendy. (2010). <a class="reference external" href="https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents">Automatic Keyword Extraction from Individual Documents</a>. 10.1002/9780470689646.ch1.)</em></p>
+<p>RAKE is a keyword extraction method which is effectively operates on individual document. RAKE is based on an observation that keywords frequently contain multiple
+words but rarely contain standard punctuation or stop words.</p>
+<p>RAKE get a list of stop words, a
+set of phrase delimiters, and a set of word delimiters as inputs. Base on the information from stop words and
+phrase delimiters, RAKE makes partitions of the document text into candidate keywords.</p>
+<p>Next, co-occurrences graph of words
+within these candidate keywords are generated. This graph is significient in identifying word cooccurrence without the application of an arbitrarily sized sliding window.</p>
+<p>Several metrics are used for calculating word scores</p>
+<ol class="simple">
+<li><p>word frequency : <span class="math notranslate nohighlight">\(freq(w)\)</span></p></li>
+<li><p>word degree : <span class="math notranslate nohighlight">\(deg(w)\)</span></p></li>
+<li><p>ratio of degree to frequency : <span class="math notranslate nohighlight">\(\frac{deg(w)}{freq(w)}\)</span></p></li>
+</ol>
+<p>In summary, <span class="math notranslate nohighlight">\(deg(w)\)</span> favors words that occur often and in
+longer candidate keywords. Words
+that occur frequently regardless of the number of words with which they co-occur
+are favored by <span class="math notranslate nohighlight">\(freq(w)\)</span>. Words that
+predominantly occur in longer candidate keywords are favored by <span class="math notranslate nohighlight">\(deg(w)/freq(w)\)</span> <a class="reference external" href="https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents">[Ref]</a>.</p>
+<p>The score for each candidate keyword is computed as the sum of its member word scores.</p>
+<p><strong>Example of score calculation from  <a class="reference external" href="https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents">Automatic Keyword Extraction from Individual Documents</a></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fig01.png&#39;</span><span class="p">,</span><span class="s1">&#39;fig02.png&#39;</span><span class="p">,</span><span class="s1">&#39;fig03.png&#39;</span><span class="p">,</span><span class="s1">&#39;fig04.png&#39;</span><span class="p">,]:</span>
+  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/keywordExtraction_21_0.png" src="_images/keywordExtraction_21_0.png" />
+<img alt="_images/keywordExtraction_21_1.png" src="_images/keywordExtraction_21_1.png" />
+<img alt="_images/keywordExtraction_21_2.png" src="_images/keywordExtraction_21_2.png" />
+<img alt="_images/keywordExtraction_21_3.png" src="_images/keywordExtraction_21_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install rake-nltk
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: rake-nltk in /usr/local/lib/python3.6/dist-packages (1.0.4)
+Requirement already satisfied: nltk in /usr/local/lib/python3.6/dist-packages (from rake-nltk) (3.2.5)
+Requirement already satisfied: six in /usr/local/lib/python3.6/dist-packages (from nltk-&gt;rake-nltk) (1.15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rake_nltk</span> <span class="kn">import</span> <span class="n">Rake</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_keywords_rake</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">rk</span> <span class="o">=</span> <span class="n">Rake</span><span class="p">()</span>
+    <span class="n">rk</span><span class="o">.</span><span class="n">extract_keywords_from_text</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">rk</span><span class="o">.</span><span class="n">get_ranked_phrases_with_scores</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">keywords</span>
+
+<span class="k">def</span> <span class="nf">print_keywords_rake</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">keywords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ans</span><span class="p">):</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="n">preprocess</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">keywords</span><span class="p">)]]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=====Abstract=====&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===Keywords===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🟢&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===Keywords by Author===&quot;</span><span class="p">)</span>
+    <span class="n">ext_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ext_keys</span><span class="p">:</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🙆‍♂️&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_idx</span> <span class="o">=</span> <span class="mi">10</span> 
+<span class="n">keywords</span><span class="o">=</span><span class="n">get_keywords_rake</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="n">print_keywords_rake</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">,</span><span class="n">keywords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=====Abstract=====
+Fractional differentiation in passive vibration control
+From a single-degree-of-freedom model used to illustrate the concept of
+	vibration isolation, a method to transform the design for a suspension
+	into a design for a robust controller is presented. Fractional
+	differentiation is used to model the viscoelastic behaviour of the
+	suspension. The use of fractional differentiation not only permits
+	optimisation of just four suspension parameters, showing the
+	&#39;compactness&#39; of the fractional derivative operator, but also leads to
+	robustness of the suspension&#39;s performance to uncertainty of the sprung
+	mass. As an example, an engine suspension is studied
+
+
+===Keywords===
+🟢passive vibration control 8.5
+fractional derivative operator 8.5
+four suspension parameters 8.0
+freedom model used 7.0
+🟢vibration isolation 4.5
+🟢fractional differentiation 4.5
+🟢viscoelastic behaviour 4.0
+🟢sprung mass 4.0
+🟢robust controller 4.0
+permits optimisation 4.0
+
+===Keywords by Author===
+🙆‍♂️fractional differentiation
+🙆‍♂️passive vibration control
+🙆‍♂️vibration isolation
+suspension
+🙆‍♂️robust controller
+🙆‍♂️viscoelastic behaviour
+🙆‍♂️sprung mass
+engine suspension
+damping
+differentiation
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we are! With this method, <strong>six</strong> of extracted top ten keywords are in keywords set selected by author. This is a great work!</p>
+<p>According to the <a class="reference external" href="https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents">RAKE’s paper</a>, RAKE
+achieves higher precision and similar recall in comparison to existing techniques. RAKE takes a simple set of input parameters and automatically extracts keywords in a single pass, making it suitable for a wide
+range of documents and collections.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mengsay LOEM<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
