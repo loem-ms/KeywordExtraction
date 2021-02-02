@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to your Jupyter Book &#8212; keywordextraction</title>
+    <title>Introduction &#8212; keywordextraction</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -57,6 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tfidf and RAKE" href="singledoc.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -75,7 +76,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/logo.jpg" class="logo" alt="logo">
+  <img src="_static/keyword.png" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">keywordextraction</h1>
@@ -87,12 +88,20 @@
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="keywordExtraction.html">
-   Keyword Extraction
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   Introduction
   </a>
  </li>
 </ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="singledoc.html">
+   Tfidf and RAKE
+  </a>
+ </li>
+</ul>
+
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -156,6 +165,30 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-keyword-extraction">
+   What is Keyword Extraction?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-extract-keywords">
+   How to Extract Keywords?
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -163,11 +196,27 @@
         
               <div>
                 
-  <div class="section" id="welcome-to-your-jupyter-book">
-<h1>Welcome to your Jupyter Book<a class="headerlink" href="#welcome-to-your-jupyter-book" title="Permalink to this headline">¶</a></h1>
-<p>This is a small sample book to give you a feel for how book content is
-structured.</p>
-<p>Check out the content pages bundled with this sample book to get started.</p>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="what-is-keyword-extraction">
+<h1>What is Keyword Extraction?<a class="headerlink" href="#what-is-keyword-extraction" title="Permalink to this headline">¶</a></h1>
+<p>Keyword Extraction is a task of choosing keywords from a text/document. Here, keywords are words or sequences of one or more words which provide a compact describsion of a text’s content.</p>
+<p>Keywords are widely use in information retrieval(IR) systems as they are simple to revise and remember. They can be used to enrich the presentation of search results as well.</p>
+</div>
+<div class="section" id="how-to-extract-keywords">
+<h1>How to Extract Keywords?<a class="headerlink" href="#how-to-extract-keywords" title="Permalink to this headline">¶</a></h1>
+<p>Main processes in keyword extraction are:</p>
+<ul class="simple">
+<li><p>Generating candidate keywords</p></li>
+<li><p>Defining and Calculating scores of candidates</p></li>
+<li><p>Ranking cadidate keywords and sorting in descending order.</p></li>
+<li><p>Selecting top k candidates as the k keywords</p></li>
+</ul>
+<p>There are many approaches in this extraction task due to Definitions of scores of cadidates and Calculation Methods.
+In next sections, we will introduce keyword extraction from single documents using statistical information (unsupervised learning) and keyword extraction with Machine learning/deep learning approach (supervised learning).</p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -198,6 +247,7 @@ structured.</p>
     
     <div class='prev-next-bottom'>
         
+    <a class='right-next' id="next-link" href="singledoc.html" title="next page">Tfidf and RAKE</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
